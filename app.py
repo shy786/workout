@@ -2,7 +2,8 @@ import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from datetime import datetime
-
+if "workouts" not in st.session_state:
+    st.session_state["workouts"] = []
 st.set_page_config(page_title="Workout Tracker", layout="centered")
 st.title("🏋️ Workout Tracker")
 
