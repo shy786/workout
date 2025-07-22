@@ -66,4 +66,12 @@ if "active_user" in st.session_state:
             ax.set_xlabel("Date")
             ax.set_title(ex)
             st.pyplot(fig)
-
+st.subheader("🗑️ Delete Workout Entry")
+if st.session_state["workouts"]:
+    for idx, entry in enumerate(st.session_state["workouts"]):
+        with st.expander(f"{entry['date']} - {entry['exercise']} ({entry['reps']} reps @ {entry.get('weight', 0)} lbs)"):
+            if st.button(f"Delete Entry #{idx+1}", key=f"delete_{idx}"):
+                st.session_state["workouts"].pop(idx)
+                st.experimental_rerun()
+else:
+    st.info("No workouts logged yet.")
